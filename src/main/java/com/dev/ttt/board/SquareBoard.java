@@ -35,8 +35,60 @@ public class SquareBoard implements Board {
 	 */
 	@Override
 	public String checkWinner(String[][] cells) {
-		return TTTConstants.PLAYER_1_SIGN;
+		int i;
+		int j;
+		int row = 0;
+		int[] column = new int[3];
+		int rightDiag = 0;
+		int leftDiag = 0;
+		int size = cells.length;
 
+		for (i = 0; i < 3; i++) {
+			for (j = 0; j < 3; j++) {
+				if (cells[j][i] != null) {
+					row = row + Integer.parseInt(cells[i][j]);
+					column[i] = column[i] + Integer.parseInt(cells[j][i]);
+				}
+				if (i == j && cells[i][j] != null) {
+					rightDiag = rightDiag + Integer.parseInt(cells[i][j]);
+				}
+			}
+			if (row == 3) {
+				return TTTConstants.PLAYER_1_SIGN;
+			} else if (row == -3) {
+				return TTTConstants.PLAYER_2_SIGN;
+			}
+			row = 0;
+			if (cells[i][size - i - 1] != null) {
+				leftDiag = leftDiag + Integer.parseInt(cells[i][size - i - 1]);
+			}
+		}
+		return checkColumnAndDiagonal(column, rightDiag, leftDiag);
+	}
+
+	/**
+	 * This checkColumnAndDiagonol method looks for a winner based on the inputs
+	 * provided
+	 * 
+	 * @return winner sign if there is one or null
+	 */
+	public String checkColumnAndDiagonal(int[] column, int rightDiag, int leftDiag) {
+		if (null != column) {
+			for (int columnvalue : column) {
+				if (columnvalue == 3) {
+					return TTTConstants.PLAYER_1_SIGN;
+				} else if (columnvalue == -3) {
+					return TTTConstants.PLAYER_2_SIGN;
+				}
+			}
+		}
+
+		if (rightDiag == 3 || leftDiag == 3) {
+			return TTTConstants.PLAYER_1_SIGN;
+		} else if (rightDiag == -3 || leftDiag == -3) {
+			return TTTConstants.PLAYER_2_SIGN;
+		}
+		return null;
 	}
 
 }
