@@ -1,5 +1,9 @@
 package com.dev.ttt.board;
 
+import java.util.Scanner;
+
+import org.apache.log4j.Logger;
+
 import com.dev.ttt.console.ConsoleScreen;
 import com.dev.ttt.console.Screen;
 import com.dev.ttt.constants.TTTConstants;
@@ -12,6 +16,8 @@ import com.dev.ttt.constants.TTTConstants;
  */
 
 public class SquareBoard implements Board {
+
+	private static Logger log = Logger.getLogger(SquareBoard.class.getName());
 
 	/**
 	 * This method will check the player's input whether it is valid or not
@@ -47,6 +53,14 @@ public class SquareBoard implements Board {
 		Screen screen = new ConsoleScreen();
 		while (moveCount < 9) {
 			screen.draw(cells);
+			String userSign = null;
+			if (moveCount % 2 == 0) {
+				userSign = TTTConstants.PLAYER_1_SIGN;
+			} else {
+				userSign = TTTConstants.PLAYER_2_SIGN;
+			}
+			String positionInput = getInput(TTTConstants.GET_INPUT_STRING + userSign);
+			moveCount = screen.updateBoard(cells, userSign, moveCount, positionInput);
 		}
 	}
 
@@ -117,4 +131,22 @@ public class SquareBoard implements Board {
 		return null;
 	}
 
+	/**
+	 * This method will get the input provided by the user. Its a generic method
+	 * which can be used to retrieve input from user for a specific message
+	 * 
+	 * @param message (String) - Message displayed to the user
+	 * 
+	 * @return input value provided by the user.
+	 */
+	@SuppressWarnings("resource")
+	private String getInput(String message) {
+		log.info(message);
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.next();
+		if (null == input) {
+			getInput(message);
+		}
+		return input;
+	}
 }

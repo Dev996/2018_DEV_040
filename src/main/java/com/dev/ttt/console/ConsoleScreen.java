@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
+import com.dev.ttt.board.Board;
+import com.dev.ttt.board.SquareBoard;
 import com.dev.ttt.constants.TTTConstants;
 
 /**
@@ -55,5 +57,24 @@ public class ConsoleScreen implements Screen {
 		} else {
 			return TTTConstants.DOT;
 		}
+	}
+
+	@Override
+	public int updateBoard(String[][] cells, String userSign, int moveCount, String positionInput) {
+		Board board = new SquareBoard();
+		if (board.isValidInput(positionInput)) {
+			int x = Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0]);
+			int y = Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1]);
+			if (null == cells[x][y]) {
+				cells[x][y] = userSign == TTTConstants.PLAYER_1_SIGN ? TTTConstants.PLAYER_1_VALUE
+						: TTTConstants.PLAYER_2_VALUE;
+				return moveCount + 1;
+			} else {
+				log.error(TTTConstants.EXISTING_POSITION_CHOSEN_ERROR);
+			}
+		} else {
+			log.error(TTTConstants.INVALID_INPUT_ERROR);
+		}
+		return moveCount;
 	}
 }

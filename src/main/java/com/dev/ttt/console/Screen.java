@@ -10,4 +10,6 @@ public interface Screen {
 
 	void draw(String[][] cells);
 
+	int updateBoard(String[][] cells, String userSign, int moveCount, String positionInput);
+
 }

@@ -21,4 +21,7 @@ public final class TTTConstants {
 	public static final String PLAYER_2_VALUE = "-1";
 	public static final String DOT = ".";
 	public static final String GAME_INTRO = "\n\nWelcome to Tic-Tac-Toe Game. This is a 3X3 board. \n\nPlease follow the prescribed format while providing input. \n\nIf you want to reset the game, Please enter 'Reset' keyword. \n";
+	public static final String GET_INPUT_STRING = "Enter your move in the format (x,y), Mr.";
+	public static final String INVALID_INPUT_ERROR = "Enter a valid Input. Please follow the input format (x,y)";
+	public static final String EXISTING_POSITION_CHOSEN_ERROR = "Given Position is already taken. Please Choose a different Position.";
 }
