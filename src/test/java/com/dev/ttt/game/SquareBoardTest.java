@@ -149,5 +149,19 @@ public class SquareBoardTest {
 		squareBoard.draw(cells, 10);
 		verifyNoMoreInteractions(spy);
 	}
+	
+	@Test
+	public void checkResetGameReturnsFalseForNullInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.resetGame(null);
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkResetGameReturnsFalseForWrongInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.resetGame("NO");
+		assertEquals(false, result);
+	}
 
 }

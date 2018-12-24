@@ -26,4 +26,7 @@ public final class TTTConstants {
 	public static final String EXISTING_POSITION_CHOSEN_ERROR = "Given Position is already taken. Please Choose a different Position.";
 	public static final String DRAW = "Sorry. Game is draw. Please reset the game and start playing again";
 	public static final String WINNER = "Winner of this game is ";
+	public static final String RESET_GAME = "Game is Over. Please enter YES to restart the game and play again";
+	public static final String RESET = "Reset";
+	public static final String YES = "YES";
 }

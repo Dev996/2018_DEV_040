@@ -19,7 +19,7 @@ public class SquareBoard implements Board {
 
 	private static Logger log = Logger.getLogger(SquareBoard.class.getName());
 
-	private String wonBy;
+	private String wonBy = null;
 
 	/**
 	 * This method will check the player's input whether it is valid or not
@@ -76,6 +76,9 @@ public class SquareBoard implements Board {
 			if (wonBy == null) {
 				log.info(TTTConstants.DRAW);
 			}
+			if (!resetGame(getInput(TTTConstants.RESET_GAME))) {
+				resetGame(getInput(TTTConstants.RESET_GAME));
+			}
 		}
 	}
 
@@ -100,8 +103,10 @@ public class SquareBoard implements Board {
 
 		for (i = 0; i < 3; i++) {
 			for (j = 0; j < 3; j++) {
-				if (cells[j][i] != null) {
+				if (cells[i][j] != null) {
 					row = row + Integer.parseInt(cells[i][j]);
+				}
+				if (cells[j][i] != null) {
 					column[i] = column[i] + Integer.parseInt(cells[j][i]);
 				}
 				if (i == j && cells[i][j] != null) {
@@ -163,5 +168,22 @@ public class SquareBoard implements Board {
 			getInput(message);
 		}
 		return input;
+	}
+
+	/**
+	 * This resetGame method will reset the game
+	 * 
+	 * @return true if game is reset or false
+	 */
+	public boolean resetGame(String userInput) {
+		if (null != userInput && TTTConstants.YES.equalsIgnoreCase(userInput)) {
+			String[][] resetCell = new String[3][3];
+			log.info(TTTConstants.GAME_INTRO);
+			draw(resetCell, 0);
+			wonBy = null;
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

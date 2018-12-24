@@ -59,9 +59,24 @@ public class ConsoleScreen implements Screen {
 		}
 	}
 
+	/**
+	 * This method will update the game board with the position chosen by the player
+	 * 
+	 * @param cells (double array) - game board, userSign (String) - Player sign,
+	 *              moveCount(Integer) - Count of valid moves of both players,
+	 *              positionInput(String) - Player's chosen position as an input
+	 * 
+	 * @return moveCount value to verify whether to proceed or not
+	 */
 	@Override
 	public int updateBoard(String[][] cells, String userSign, int moveCount, String positionInput) {
 		Board board = new SquareBoard();
+		if (positionInput.equalsIgnoreCase(TTTConstants.RESET)) {
+			String[][] resetCell = new String[3][3];
+			log.info(TTTConstants.GAME_INTRO);
+			board.draw(resetCell, 0);
+			return 0;
+		}
 		if (board.isValidInput(positionInput)) {
 			int x = Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0]);
 			int y = Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1]);
