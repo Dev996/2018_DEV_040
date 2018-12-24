@@ -1,11 +1,13 @@
 package com.dev.ttt.game;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.dev.ttt.board.SquareBoard;
+import com.dev.ttt.console.ConsoleScreen;
 import com.dev.ttt.constants.TTTConstants;
 
 public class SquareBoardTest {
@@ -136,6 +138,16 @@ public class SquareBoardTest {
 		assertEquals(TTTConstants.PLAYER_2_SIGN, square.checkColumnAndDiagonal(columnForPlayer2, 3, 0));
 		assertEquals(TTTConstants.PLAYER_2_SIGN, square.checkColumnAndDiagonal(null, 0, -3));
 		assertEquals(TTTConstants.PLAYER_2_SIGN, square.checkColumnAndDiagonal(null, -3, 0));
+	}
+
+	@Test
+	public void shouldNotCallDrawMethodForHigherMoveCount() {
+		String[][] cells = new String[3][3];
+		ConsoleScreen screen = new ConsoleScreen();
+		ConsoleScreen spy = Mockito.spy(screen);
+		Mockito.doNothing().when(spy).draw(cells);
+		squareBoard.draw(cells, 10);
+		verifyNoMoreInteractions(spy);
 	}
 
 }

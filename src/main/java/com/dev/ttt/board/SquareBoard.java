@@ -1,5 +1,7 @@
 package com.dev.ttt.board;
 
+import com.dev.ttt.console.ConsoleScreen;
+import com.dev.ttt.console.Screen;
 import com.dev.ttt.constants.TTTConstants;
 
 /**
@@ -12,24 +14,41 @@ import com.dev.ttt.constants.TTTConstants;
 public class SquareBoard implements Board {
 
 	/**
-     * This method will check the player's input whether it is valid or not
-     * 
-     * @param positionInput (String) - input provided by the user
-     * 
-     * @return true - if the provided input is valid and false if input is invalid.
-     */
-    @Override
-    public boolean isValidInput(String positionInput) {
-         return null != positionInput && !positionInput.isEmpty()
-                   && positionInput.matches(TTTConstants.ONLY_NUMBER_REGEX) && positionInput.contains(TTTConstants.COMMA)
-                   && 2 == positionInput.split(TTTConstants.COMMA).length
-                   && !positionInput.split(TTTConstants.COMMA)[0].isEmpty()
-                   && null != positionInput.split(TTTConstants.COMMA)[1]
-                   && 0 <= Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0])
-                   && 3 > Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0])
-                   && 0 <= Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1])
-                   && 3 > Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1]);
-    }
+	 * This method will check the player's input whether it is valid or not
+	 * 
+	 * @param positionInput (String) - input provided by the user
+	 * 
+	 * @return true - if the provided input is valid and false if input is invalid.
+	 */
+	@Override
+	public boolean isValidInput(String positionInput) {
+		return null != positionInput && !positionInput.isEmpty()
+				&& positionInput.matches(TTTConstants.ONLY_NUMBER_REGEX) && positionInput.contains(TTTConstants.COMMA)
+				&& 2 == positionInput.split(TTTConstants.COMMA).length
+				&& !positionInput.split(TTTConstants.COMMA)[0].isEmpty()
+				&& null != positionInput.split(TTTConstants.COMMA)[1]
+				&& 0 <= Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0])
+				&& 3 > Integer.parseInt(positionInput.split(TTTConstants.COMMA)[0])
+				&& 0 <= Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1])
+				&& 3 > Integer.parseInt(positionInput.split(TTTConstants.COMMA)[1]);
+	}
+
+	/**
+	 * This draw method will help players to play the game. Also prints the board
+	 * with the position chosen by both players and find the winner appropriately.
+	 * 
+	 * @param cells (Double array) - Game board, moveCount (Integer) - Valid move
+	 *              count of both players
+	 * 
+	 * @return Nothing.
+	 */
+	@Override
+	public void draw(String[][] cells, int moveCount) {
+		Screen screen = new ConsoleScreen();
+		while (moveCount < 9) {
+			screen.draw(cells);
+		}
+	}
 
 	/**
 	 * This method will check the winner of the game for the provided game board

@@ -9,8 +9,10 @@ package com.dev.ttt.board;
 
 public interface Board {
 
-     boolean isValidInput(String positionInput);
+	boolean isValidInput(String positionInput);
 
-     String checkWinner(String[][] cells);
+	String checkWinner(String[][] cells);
+
+	void draw(String[][] cells, int moveCount);
 
 }
