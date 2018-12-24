@@ -34,6 +34,55 @@ public class SquareBoardTest {
 	}
 
 	@Test
+	public void checkIsValidInputMethodReturnsFalseForEmptyInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput(",1");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsFalseForEmptySecondPosition() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("1,");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsFalseForNonNumberInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("a,1");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsFalseForInvalidInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("4,0");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsFalseForInvalidFirstPosition() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("-1,4");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsFalseForNegativeInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("-2,-1");
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void checkIsValidInputMethodReturnsTrueForValidInput() {
+		SquareBoard square = new SquareBoard();
+		boolean result = square.isValidInput("2,2");
+		assertEquals(true, result);
+	}
+
+	@Test
 	public void shouldPrintWinnerIsNullCheckWinnerMethodForValidInput() {
 		String[][] cells = new String[3][3];
 		SquareBoard square = new SquareBoard();
