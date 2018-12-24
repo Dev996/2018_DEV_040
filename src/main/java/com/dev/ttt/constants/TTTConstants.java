@@ -24,4 +24,6 @@ public final class TTTConstants {
 	public static final String GET_INPUT_STRING = "Enter your move in the format (x,y), Mr.";
 	public static final String INVALID_INPUT_ERROR = "Enter a valid Input. Please follow the input format (x,y)";
 	public static final String EXISTING_POSITION_CHOSEN_ERROR = "Given Position is already taken. Please Choose a different Position.";
+	public static final String DRAW = "Sorry. Game is draw. Please reset the game and start playing again";
+	public static final String WINNER = "Winner of this game is ";
 }

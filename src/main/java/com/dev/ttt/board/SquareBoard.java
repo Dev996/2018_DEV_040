@@ -19,6 +19,8 @@ public class SquareBoard implements Board {
 
 	private static Logger log = Logger.getLogger(SquareBoard.class.getName());
 
+	private String wonBy;
+
 	/**
 	 * This method will check the player's input whether it is valid or not
 	 * 
@@ -61,6 +63,19 @@ public class SquareBoard implements Board {
 			}
 			String positionInput = getInput(TTTConstants.GET_INPUT_STRING + userSign);
 			moveCount = screen.updateBoard(cells, userSign, moveCount, positionInput);
+			if (moveCount > 2) {
+				wonBy = checkWinner(cells);
+				if (wonBy != null) {
+					log.info(TTTConstants.WINNER + moveCount);
+					moveCount = 9;
+				}
+			}
+		}
+		if (moveCount == 9) {
+			screen.draw(cells);
+			if (wonBy == null) {
+				log.info(TTTConstants.DRAW);
+			}
 		}
 	}
 
