@@ -1,5 +1,7 @@
 package com.dev.ttt.app;
 
+import org.apache.log4j.Logger;
+
 /**
  * The TicTacToe program implements an application that simply allows two users
  * to play a 3 x 3 tic-tac-toe game in the console.
@@ -10,6 +12,8 @@ package com.dev.ttt.app;
 
 public class TicTacToeMain {
 
+	private static final Logger log = Logger.getLogger(TicTacToeMain.class.getName());
+
 	/**
 	 * This is the main method which initialize the tic-tac-toe game.
 	 * 
@@ -18,6 +22,6 @@ public class TicTacToeMain {
 	 * @return Nothing.
 	 */
 	public static final void main(String[] args) {
-		System.out.println("Application Started");
+		log.info("Application Started");
 	}
 }

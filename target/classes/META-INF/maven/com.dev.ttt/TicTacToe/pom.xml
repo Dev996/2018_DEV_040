@@ -5,6 +5,25 @@
 	<groupId>com.dev.ttt</groupId>
 	<artifactId>TicTacToe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>TicTacToeGame</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
